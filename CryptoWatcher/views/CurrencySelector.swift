@@ -8,19 +8,30 @@
 import SwiftUI
 
 struct CurrencySelector: View {
-   @State var currencies: [Currency] = []
     @State private var multiSelection = Set<UUID>()
+    @EnvironmentObject var currencyStore: CurrencyStore
     @EnvironmentObject var coinService: CoinGeckoService
     var body: some View {
         NavigationView {
-            List(currencies,selection: $multiSelection) {currency in
-                
+            //TODO: set to small size don't know how atm...
+            Text("Select the currencies you want to check the token's price in")
+            List(selection: $multiSelection) {
+                ForEach(currencyStore.currencies,id:\.id)
+                {currency in
+                    Text("\(currency.name)")
+                }
+            }.onAppear() {
+                coinService.loadCurrencies(completion: {
+                    (currsStr) in
+                    currsStr.forEach {val in
+                        currencyStore.addCurrency(curr:Currency(name: val))
+                    }
+                    
+                })
             }
-        }.onAppear() {
-            coinService.loadCurrencies(completion: {
-                (currs) in
-                self.currencies = currs
-            })
+        }
+        .toolbar{
+            EditButton()
         }
     }
 }

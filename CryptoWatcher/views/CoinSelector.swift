@@ -8,17 +8,25 @@
 import SwiftUI
 
 struct CoinSelector: View {
-    @EnvironmentObject  var coinStore: CoinStore
+    @EnvironmentObject var coinStore: CoinStore
     var body: some View {
-        NavigationView {
-            List(coinStore.coins) {
-                coin in HStack {
-                    Text("\(coin.id)")
-                    Text("\(coin.fullName)")
-                    Text("\(coin.symbol)")
+        NavigationView{
+            
+            List(coinStore.coins) { coin in
+                VStack
+                {
+                 HStack{
+                     NavigationLink(destination: CurrencySelector()){
+                         Text("\(coin.fullName)").font(.body).fontWeight(.bold)
+                     }.onTapGesture {
+                         coinStore.setSelectedCoin(coin: coin)
+                         print(coin.id)
+                     }
+                 }
                 }
-            }
-        }.navigationBarTitle(Text("Select a coin"))
+            }.navigationTitle("Select a coin")
+        }
+        
     }
 }
 

@@ -12,6 +12,12 @@ struct Coin: Decodable, Identifiable
     var id: String
     var symbol:String
     var fullName:String
+    init(id:String,symbol:String,fullName:String)
+    {
+        self.fullName = fullName
+        self.symbol = symbol
+        self.id = id
+    }
 }
 
 

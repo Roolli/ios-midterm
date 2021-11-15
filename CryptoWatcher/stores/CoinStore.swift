@@ -8,6 +8,11 @@
 import Foundation
 
 class CoinStore: ObservableObject {
-    @Published var coins:[Coin] = []
+    @Published var coins:[Coin] = [Coin(id:"bitcoin",symbol:"btc",fullName:"Bitcoin"),Coin(id: "tether", symbol: "usdt", fullName: "Tether"),Coin(id: "ethereum", symbol: "eth", fullName: "Ethereum"),Coin(id: "dogecoin", symbol: "doge", fullName: "Dogecoin")]
     static var selectedCoin: Coin?
+    
+    func setSelectedCoin(coin:Coin)
+    {
+        CoinStore.selectedCoin = coin
+    }
 }

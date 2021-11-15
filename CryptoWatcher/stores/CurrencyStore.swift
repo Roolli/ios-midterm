@@ -8,5 +8,18 @@
 import Foundation
 
 class CurrencyStore: ObservableObject {
-    @Published var currencies: [String] = []
+    @Published var currencies: [Currency] = []
+    
+    func addCurrency(curr:Currency)
+    {
+        currencies.append(curr)
+    }
+    func getCurrency(index: Int) -> Currency
+    {
+        if(currencies.count > index)
+        {
+            return currencies[index]
+        }
+        else { return Currency(name:"") }
+    }
 }

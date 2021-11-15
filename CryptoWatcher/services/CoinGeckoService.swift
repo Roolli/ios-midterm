@@ -11,20 +11,20 @@ class CoinGeckoService: ObservableObject {
     var baseUrl: String
     init()
     {
-        baseUrl = "https://coingecko.com/api/v3/simple"
+        baseUrl = "https://api.coingecko.com/api/v3"
     }
     
     
-    func loadCurrencies(completion:@escaping ([Currency]) ->()) {
-        guard let url = URL(string:baseUrl+"/vs_currencies")
+    func loadCurrencies(completion:@escaping ([String]) ->()) {
+        guard let url = URL(string:baseUrl+"/simple/supported_vs_currencies")
         else {
             print("invalid url")
             return
         }
-        executeRequest(url:url,completionHandler: completion)
+    executeRequest(url:url,completionHandler: completion)
     }
     func getCoins(completion:@escaping ([Coin]) ->()) {
-        guard let url = URL(string:baseUrl+"/coins")
+        guard let url = URL(string:baseUrl+"/coins/list")
         else {
             print("invalid url")
             return
@@ -33,9 +33,11 @@ class CoinGeckoService: ObservableObject {
     }
     func executeRequest<T>(url:URL,completionHandler: @escaping (T)->()) where T : Decodable {
         URLSession.shared.dataTask(with: url, completionHandler: {data,response,error in
+           
             let currencies = try! JSONDecoder().decode(T.self,from:data!)
             DispatchQueue.main.async {
                 completionHandler(currencies)
             }
-        }).resume()    }
+        }).resume()
+    }
 }

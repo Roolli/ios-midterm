@@ -9,28 +9,40 @@ import SwiftUI
 
 struct MainView: View {
     let coinService = CoinGeckoService()
+    let coinStore: CoinStore = CoinStore()
+    let currencyStore = CurrencyStore()
+    @State private var beginCoinCheckProcess = false
     var body: some View {
         ZStack {
-            Color("primaryDark")
+            Color("Primary")
                 .edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                Image("AppLogo").resizable()
-                Text("APP_DESCRIPTION")
+            NavigationView{
+                
+                
+                VStack(alignment: .leading) {
+                    NavigationLink(destination: CoinSelector(),isActive: $beginCoinCheckProcess)
+                    {
+                        EmptyView()
+                    }
+                    Text("Welcome to the best crypto token price checker app there is!").multilineTextAlignment(.center)
+                    HStack {
+                        
+                        
+                        Spacer()
+                        Button("Begin!"){
+                            beginCoinCheckProcess.toggle()
+                        }.padding(20)
+                            .foregroundColor(.white)
+                            .background(Color.purple)
+                        Spacer()
+                    }
+                }
             }
-            Spacer()
             
-            TabView {
-                CoinSelector().tabItem{
-                    Text("Select Coin")
-                }
-                CurrencySelector().tabItem{
-                    Text("Select conversion currencies")
-                }
-            }.navigationViewStyle(StackNavigationViewStyle())
-                .accentColor(Color("Primary"))
         }.environmentObject(coinService)
-       
+            .environmentObject(currencyStore)
+            .environmentObject(coinStore)
+            .background(Color.black)
         
     }
 }

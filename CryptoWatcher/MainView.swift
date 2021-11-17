@@ -13,36 +13,28 @@ struct MainView: View {
     let currencyStore = CurrencyStore()
     @State private var beginCoinCheckProcess = false
     var body: some View {
-        ZStack {
-            Color("Primary")
-                .edgesIgnoringSafeArea(.all)
-            NavigationView{
+        NavigationView{
+            VStack() {
+                Spacer()
+                NavigationLink(destination: CoinSelector(),isActive: $beginCoinCheckProcess)
+                {
+                    EmptyView()
+                }.background(Color.black)
+                Text("Welcome to the best crypto token price checker app there is!").multilineTextAlignment(.center)
+                Button("Begin!"){
+                    beginCoinCheckProcess.toggle()
+                }.padding(20)
+                    .foregroundColor(.white)
+                    .background(Color.purple)
+                Spacer()
                 
                 
-                VStack(alignment: .leading) {
-                    NavigationLink(destination: CoinSelector(),isActive: $beginCoinCheckProcess)
-                    {
-                        EmptyView()
-                    }
-                    Text("Welcome to the best crypto token price checker app there is!").multilineTextAlignment(.center)
-                    HStack {
-                        
-                        
-                        Spacer()
-                        Button("Begin!"){
-                            beginCoinCheckProcess.toggle()
-                        }.padding(20)
-                            .foregroundColor(.white)
-                            .background(Color.purple)
-                        Spacer()
-                    }
-                }
             }
             
         }.environmentObject(coinService)
             .environmentObject(currencyStore)
             .environmentObject(coinStore)
-            .background(Color.black)
+            .environmentObject(CoinPriceStore(service:coinService))
         
     }
 }

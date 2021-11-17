@@ -8,32 +8,57 @@
 import Foundation
 
 class CoinGeckoService: ObservableObject {
-    var baseUrl: String
+    var baseUrl: URLComponents
     init()
     {
-        baseUrl = "https://api.coingecko.com/api/v3"
+        baseUrl = URLComponents()
+        baseUrl.host = "api.coingecko.com"
+        baseUrl.scheme = "https"
+        baseUrl.path = "/api/v3"
     }
     
     
     func loadCurrencies(completion:@escaping ([String]) ->()) {
-        guard let url = URL(string:baseUrl+"/simple/supported_vs_currencies")
+        var urlBuilder = URLComponents(url:baseUrl.url!,resolvingAgainstBaseURL: true)
+        urlBuilder?.path += "/simple/supported_vs_currencies"
+        guard let url = urlBuilder?.url
         else {
             print("invalid url")
             return
         }
+    
     executeRequest(url:url,completionHandler: completion)
     }
     func getCoins(completion:@escaping ([Coin]) ->()) {
-        guard let url = URL(string:baseUrl+"/coins/list")
+        var urlBuilder = URLComponents(url: baseUrl.url!, resolvingAgainstBaseURL:true)
+        urlBuilder?.path += "/coins/list"
+        guard let url = urlBuilder?.url
         else {
             print("invalid url")
             return
         }
         executeRequest(url:url,completionHandler: completion)
     }
+    
+    func getCoinPricesInGivenCurrencies(coin:Coin, currencies: [Currency],completion:@escaping (CoinPrices)->())
+    {
+        var components = URLComponents(url:baseUrl.url!,resolvingAgainstBaseURL: true)
+        components?.path+="/simple/price"
+        var queryItems = currencies.map({currency in
+            return URLQueryItem(name:"vs_currencies",value:currency.name)})
+        queryItems.append(URLQueryItem(name:"ids",value:coin.id))
+        components?.queryItems = queryItems
+        guard let url = components?.url
+        else {
+            print("invalid url")
+            return
+        }
+        executeRequest(url: url, completionHandler: completion)
+        
+    }
+    
     func executeRequest<T>(url:URL,completionHandler: @escaping (T)->()) where T : Decodable {
         URLSession.shared.dataTask(with: url, completionHandler: {data,response,error in
-           
             let currencies = try! JSONDecoder().decode(T.self,from:data!)
             DispatchQueue.main.async {
                 completionHandler(currencies)

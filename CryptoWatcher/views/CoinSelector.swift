@@ -13,25 +13,25 @@ struct CoinSelector: View {
         NavigationView{
             
             List(coinStore.coins) { coin in
-                VStack
-                {
+                
                  HStack{
-                     NavigationLink(destination: CurrencySelector()){
+                     NavigationLink(destination: CurrencySelector(selectedCoin: "\(coin.id)")){
                          Text("\(coin.fullName)").font(.body).fontWeight(.bold)
-                     }.onTapGesture {
-                         coinStore.setSelectedCoin(coin: coin)
-                         print(coin.id)
                      }
                  }
-                }
-            }.navigationTitle("Select a coin")
-        }
+                
+            }
+        }.toolbar{
+            ToolbarItem(placement: .principal){
+                Text("Select coins!")
+            }
+        }.navigationBarTitleDisplayMode(.inline).navigationBarBackButtonHidden(true)
         
     }
 }
 
 struct CoinSelector_Previews: PreviewProvider {
     static var previews: some View {
-        CoinSelector()
+        CoinSelector().environmentObject(CoinStore())
     }
 }

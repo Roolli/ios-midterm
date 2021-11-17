@@ -14,12 +14,14 @@ class CurrencyStore: ObservableObject {
     {
         currencies.append(curr)
     }
-    func getCurrency(index: Int) -> Currency
+    func getCurrency(id:UUID) -> Currency
     {
-        if(currencies.count > index)
+        if let result =  currencies.first(where: {c in c.id == id})
         {
-            return currencies[index]
+            return result
         }
-        else { return Currency(name:"") }
+        else {
+            return Currency(name:"")
+        }
     }
 }

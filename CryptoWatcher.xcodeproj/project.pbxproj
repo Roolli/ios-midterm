@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		162D8E1B2745A5A300232A6F /* CoinPriceLister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162D8E1A2745A5A300232A6F /* CoinPriceLister.swift */; };
 		166FF12C27419B7F00A1A948 /* CryptoWatcherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166FF12B27419B7F00A1A948 /* CryptoWatcherApp.swift */; };
 		166FF12E27419B7F00A1A948 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166FF12D27419B7F00A1A948 /* MainView.swift */; };
 		166FF13027419B8000A1A948 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 166FF12F27419B8000A1A948 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		162D8E1A2745A5A300232A6F /* CoinPriceLister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPriceLister.swift; sourceTree = "<group>"; };
 		166FF12827419B7F00A1A948 /* CryptoWatcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoWatcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		166FF12B27419B7F00A1A948 /* CryptoWatcherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoWatcherApp.swift; sourceTree = "<group>"; };
 		166FF12D27419B7F00A1A948 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			children = (
 				166FF1412741AB0F00A1A948 /* CoinSelector.swift */,
 				166FF1452741B4F100A1A948 /* CurrencySelector.swift */,
+				162D8E1A2745A5A300232A6F /* CoinPriceLister.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				166FF1482741B5E900A1A948 /* CoinPriceStore.swift in Sources */,
 				166FF1442741AB5A00A1A948 /* CoinStore.swift in Sources */,
 				166FF14A2741C20F00A1A948 /* CurrencyStore.swift in Sources */,
+				162D8E1B2745A5A300232A6F /* CoinPriceLister.swift in Sources */,
 				166FF13C2741A05700A1A948 /* Coin.swift in Sources */,
 				166FF1422741AB0F00A1A948 /* CoinSelector.swift in Sources */,
 				166FF1462741B4F100A1A948 /* CurrencySelector.swift in Sources */,

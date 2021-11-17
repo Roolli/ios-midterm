@@ -24,4 +24,10 @@ class CoinPriceStore: ObservableObject {
         }
         else { return -1}
     }
+    func getCoinPricesForCurrencies(coin:Coin,currencies:[Currency])
+    {
+        service.getCoinPricesInGivenCurrencies(coin:coin, currencies:currencies,completion: { res in
+            print(res)
+        })
+    }
 }

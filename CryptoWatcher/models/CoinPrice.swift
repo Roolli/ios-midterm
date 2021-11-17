@@ -39,7 +39,7 @@ struct CoinPrices : Decodable
             for currencyKey in decodedObject.allKeys
             {
                 let val = try decodedObject.decode(Double.self, forKey: DynamicCodingKeys(stringValue: currencyKey.stringValue)!)
-                self.prices["\(currencyKey)"] = val
+                self.prices["\(currencyKey.stringValue)"] = val
             }
         }
     }

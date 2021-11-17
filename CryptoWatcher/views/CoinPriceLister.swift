@@ -15,7 +15,13 @@ struct CoinPriceLister: View {
     let selectedCoin: String
     var body: some View {
         ZStack{
-            
+            Text("One unit of "+(coinPriceStore.coinPrice?.coin  ?? "") + "is worth")
+            List{
+                ForEach((coinPriceStore.coinPrice?.prices.sorted(by: >))!, id:\.key) {
+                    key,value in
+                    Text("\(value) in \(key)")
+                }
+            }
             
         }.onAppear{
             let currencies = selectedCurrencies.map({uuid in

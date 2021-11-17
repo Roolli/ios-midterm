@@ -9,17 +9,17 @@ import Foundation
 
 class CoinPriceStore: ObservableObject {
     let service: CoinGeckoService
+    @Published var coinPrice: CoinPrices?
     
     init(service: CoinGeckoService)
     {
         self.service = service
     }
     
-    @Published var coinPrices: Dictionary<String,Double> = [:]
     
     func getPriceForCurreny(currency:String) ->Double
     {
-        if let val = self.coinPrices[currency] {
+        if let val = self.coinPrice?.prices[currency] {
             return val
         }
         else { return -1}
@@ -27,7 +27,7 @@ class CoinPriceStore: ObservableObject {
     func getCoinPricesForCurrencies(coin:Coin,currencies:[Currency])
     {
         service.getCoinPricesInGivenCurrencies(coin:coin, currencies:currencies,completion: { res in
-            print(res)
+            self.coinPrice = res
         })
     }
 }

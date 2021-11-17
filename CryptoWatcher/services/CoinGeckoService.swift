@@ -44,8 +44,11 @@ class CoinGeckoService: ObservableObject {
     {
         var components = URLComponents(url:baseUrl.url!,resolvingAgainstBaseURL: true)
         components?.path+="/simple/price"
-        var queryItems = currencies.map({currency in
-            return URLQueryItem(name:"vs_currencies",value:currency.name)})
+        var queryItems:[URLQueryItem] = []
+        let currencies_as_strings = currencies.map({c in
+            return c.name
+        })
+        queryItems.append(URLQueryItem(name:"vs_currencies",value: currencies_as_strings.joined(separator:",")))
         queryItems.append(URLQueryItem(name:"ids",value:coin.id))
         components?.queryItems = queryItems
         guard let url = components?.url

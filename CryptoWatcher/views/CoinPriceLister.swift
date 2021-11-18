@@ -14,15 +14,24 @@ struct CoinPriceLister: View {
     let selectedCurrencies: Set<UUID>
     let selectedCoin: String
     var body: some View {
-        ZStack{
-            Text("One unit of "+(coinPriceStore.coinPrice?.coin  ?? "") + "is worth")
+        VStack{
+            Text("One unit of \(coinPriceStore.coinPrice.coin) is worth").font(.headline)
             List{
-                ForEach((coinPriceStore.coinPrice?.prices.sorted(by: >))!, id:\.key) {
+                ForEach((coinPriceStore.coinPrice.prices.sorted(by: >)), id:\.key) {
                     key,value in
-                    Text("\(value) in \(key)")
-                }
+                    HStack{
+                        Spacer()
+                        Text("\(value) in \(key.uppercased())").font(.body)
+                        
+                        Spacer()
+                    }.listRowBackground(
+                        Color(red:121 / 255,green:1,blue: 100 / 100))
+                        .cornerRadius(25)
+                        .listRowInsets(.none)
+                    .listRowSeparator(Visibility.visible)
+                    
+                }.foregroundColor(.secondary).padding()
             }
-            
         }.onAppear{
             let currencies = selectedCurrencies.map({uuid in
                 return currencyStore.getCurrency(id: uuid)

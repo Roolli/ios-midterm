@@ -27,6 +27,12 @@ struct CoinPrices : Decodable
         
         
     }
+    
+    init()
+    {
+        self.coin = ""
+    }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: DynamicCodingKeys.self)
         

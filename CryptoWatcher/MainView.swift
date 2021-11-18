@@ -20,18 +20,18 @@ struct MainView: View {
                 {
                     EmptyView()
                 }.background(Color.black)
-                Text("Welcome to the best crypto token price checker app there is!").multilineTextAlignment(.center)
+                Text("Welcome to the best crypto token price checker app there is!").multilineTextAlignment(.center).font(.headline)
                 Button("Begin!"){
                     beginCoinCheckProcess.toggle()
                 }.padding(20)
                     .foregroundColor(.white)
                     .background(Color.purple)
+                    .cornerRadius(25)
                 Spacer()
-                
-                
+
             }
-            
-        }.environmentObject(coinService)
+        }
+        .environmentObject(coinService)
             .environmentObject(currencyStore)
             .environmentObject(coinStore)
             .environmentObject(CoinPriceStore(service:coinService))

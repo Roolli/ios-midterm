@@ -9,7 +9,7 @@ import Foundation
 
 class CoinPriceStore: ObservableObject {
     let service: CoinGeckoService
-    @Published var coinPrice: CoinPrices?
+    @Published var coinPrice: CoinPrices = CoinPrices()
     
     init(service: CoinGeckoService)
     {
@@ -19,7 +19,7 @@ class CoinPriceStore: ObservableObject {
     
     func getPriceForCurreny(currency:String) ->Double
     {
-        if let val = self.coinPrice?.prices[currency] {
+        if let val = self.coinPrice.prices[currency] {
             return val
         }
         else { return -1}

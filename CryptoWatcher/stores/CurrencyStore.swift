@@ -9,10 +9,11 @@ import Foundation
 
 class CurrencyStore: ObservableObject {
     @Published var currencies: [Currency] = []
-    
+    var allCurrencies: [Currency] = []
+    var popularCurrencies = [Currency(name:"huf"),Currency(name:"gbp"),Currency(name:"eur"),Currency(name:"btc"),Currency(name:"eth"),Currency(name:"usd"),Currency(name:"tet")]
     func addCurrency(curr:Currency)
     {
-        currencies.append(curr)
+        allCurrencies.append(curr)
     }
     func getCurrency(id:UUID) -> Currency
     {
@@ -22,6 +23,15 @@ class CurrencyStore: ObservableObject {
         }
         else {
             return Currency(name:"")
+        }
+    }
+    func showPopularCurrencySelection(state:Bool)
+    {
+        if state {
+            currencies = popularCurrencies
+        }
+        else {
+            currencies = allCurrencies
         }
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 class CurrencyStore: ObservableObject {
     @Published var currencies: [Currency] = []
     var allCurrencies: [Currency] = []
-    var popularCurrencies = [Currency(name:"huf"),Currency(name:"gbp"),Currency(name:"eur"),Currency(name:"btc"),Currency(name:"eth"),Currency(name:"usd"),Currency(name:"tet")]
+    var popularCurrencies = [Currency(name:"huf"),Currency(name:"gbp"),Currency(name:"eur"),Currency(name:"btc"),Currency(name:"eth"),Currency(name:"usd")]
     func addCurrency(curr:Currency)
     {
         allCurrencies.append(curr)

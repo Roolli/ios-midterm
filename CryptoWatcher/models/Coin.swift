@@ -12,11 +12,13 @@ struct Coin: Decodable, Identifiable
     var id: String
     var symbol:String
     var fullName:String
-    init(id:String,symbol:String,fullName:String)
+    var picture: String
+    init(id:String,symbol:String,fullName:String,picture:String)
     {
         self.fullName = fullName
         self.symbol = symbol
         self.id = id
+        self.picture = picture
     }
 }
 

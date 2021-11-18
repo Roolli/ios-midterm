@@ -11,7 +11,6 @@ struct CoinSelector: View {
     @EnvironmentObject var coinStore: CoinStore
     var body: some View {
         
-        NavigationView{
                 List(coinStore.coins) { coin in
                     HStack(){
                         Spacer()
@@ -27,7 +26,6 @@ struct CoinSelector: View {
                 ToolbarItem(placement: .principal){
                     Text("Select coin!")
                 }
-            }.navigationBarTitleDisplayMode(.inline).navigationBarBackButtonHidden(true)
         }
     }
 }

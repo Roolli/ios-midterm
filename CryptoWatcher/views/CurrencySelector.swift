@@ -8,15 +8,22 @@
 import SwiftUI
 
 struct CurrencySelector: View {
-    @State private var multiSelection = Set<UUID>()
     let selectedCoin: String
+    @State private var multiSelection = Set<UUID>()
+    @State private var image: UIImage = UIImage()
     @State private var doLookup = false;
     @State private var showPopular = true
     @EnvironmentObject var currencyStore: CurrencyStore
+    @EnvironmentObject var coinStore: CoinStore
     @EnvironmentObject var coinService: CoinGeckoService
+    @ObservedObject var imageLoader = ImageLoader()
+    
     var body: some View {
-        NavigationView{
             VStack {
+                Image(uiImage: image).resizable().aspectRatio(contentMode: .fit).frame(width: 100, height: 100).onReceive(imageLoader.didChange){
+                    data in
+                    self.image = UIImage(data:data) ?? UIImage()
+                }
                 Toggle(isOn:  $showPopular){
                     HStack()
                     {
@@ -51,6 +58,7 @@ struct CurrencySelector: View {
                         }
                         currencyStore.showPopularCurrencySelection(state: showPopular)
                     })
+                    imageLoader.loadPictureFromURL(urlString: coinStore.getCoin(id: selectedCoin).picture)
                 }
                 NavigationLink(destination: CoinPriceLister( selectedCurrencies: multiSelection,selectedCoin: selectedCoin),isActive:$doLookup)
                 {
@@ -68,8 +76,7 @@ struct CurrencySelector: View {
                     }
                 }
             }
-        }.navigationBarTitleDisplayMode(.inline).navigationViewStyle(.stack)
-            .navigationBarBackButtonHidden(true)
+            
         
     }
 }

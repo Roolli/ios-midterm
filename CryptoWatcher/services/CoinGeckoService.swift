@@ -29,6 +29,7 @@ class CoinGeckoService: ObservableObject {
     
     executeRequest(url:url,completionHandler: completion)
     }
+    // nincs használva mert az ÖSSZES létrező coint betölti és évekig tart...
     func getCoins(completion:@escaping ([Coin]) ->()) {
         var urlBuilder = URLComponents(url: baseUrl.url!, resolvingAgainstBaseURL:true)
         urlBuilder?.path += "/coins/list"

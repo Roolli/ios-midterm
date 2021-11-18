@@ -35,7 +35,6 @@ struct MainView: View {
             .environmentObject(currencyStore)
             .environmentObject(coinStore)
             .environmentObject(CoinPriceStore(service:coinService))
-        
     }
 }
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		162D8E1B2745A5A300232A6F /* CoinPriceLister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162D8E1A2745A5A300232A6F /* CoinPriceLister.swift */; };
+		1656FA81274688EF0099211C /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1656FA80274688EF0099211C /* ImageLoader.swift */; };
 		166FF12C27419B7F00A1A948 /* CryptoWatcherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166FF12B27419B7F00A1A948 /* CryptoWatcherApp.swift */; };
 		166FF12E27419B7F00A1A948 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166FF12D27419B7F00A1A948 /* MainView.swift */; };
 		166FF13027419B8000A1A948 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 166FF12F27419B8000A1A948 /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		162D8E1A2745A5A300232A6F /* CoinPriceLister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPriceLister.swift; sourceTree = "<group>"; };
+		1656FA80274688EF0099211C /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		166FF12827419B7F00A1A948 /* CryptoWatcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoWatcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		166FF12B27419B7F00A1A948 /* CryptoWatcherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoWatcherApp.swift; sourceTree = "<group>"; };
 		166FF12D27419B7F00A1A948 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				166FF14B2741C2C700A1A948 /* CoinGeckoService.swift */,
+				1656FA80274688EF0099211C /* ImageLoader.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				166FF12E27419B7F00A1A948 /* MainView.swift in Sources */,
 				166FF1402741A40A00A1A948 /* CoinPrice.swift in Sources */,
 				166FF12C27419B7F00A1A948 /* CryptoWatcherApp.swift in Sources */,
+				1656FA81274688EF0099211C /* ImageLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

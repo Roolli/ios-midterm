@@ -21,14 +21,15 @@ struct CoinPriceLister: View {
                     key,value in
                     HStack{
                         Spacer()
-                        Text("\(value) in \(key.uppercased())").font(.body)
+                        Text("\(String(format:"%.2f",value)) in \(key.uppercased())").font(.body)
                         
                         Spacer()
                     }.listRowBackground(
-                        Color(red:121 / 255,green:1,blue: 100 / 100))
+                        Color(red:121 / 255,green:1,blue: 100 / 255))
                         .cornerRadius(25)
                         .listRowInsets(.none)
                     .listRowSeparator(Visibility.visible)
+                    .listRowInsets(.init(top:5,leading: 5,bottom:5,trailing: 5))
                     
                 }.foregroundColor(.secondary).padding()
             }
